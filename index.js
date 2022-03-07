@@ -25,7 +25,6 @@ for (const file of commandFiles) {
   	// .then(channel => console.log(channel))
   	// .catch(console.error);
 
-// const channel = client.channels.cache.get(channel);
 // // 굳이 분리하지 않기
 // channel.send('content');
 
