@@ -11,7 +11,9 @@ const requestOptions = {
 };
 
 
-const getDBSchema = () => fetch(endPoint, requestOptions).then(response => response.json());
+const getDBSchema = () =>
+fetch(endPoint, requestOptions)
+.then(response => response.json());
 // 함수 2번
 module.exports = {
     //식별자가 똑같으면 걍 이렇게 써도 됌. 
