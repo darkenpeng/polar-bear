@@ -1,5 +1,10 @@
 const ogs = require('open-graph-scraper');
 const options = { url: 'http://ogp.me/' };
+
+module.exports = {
+
+    
+}
 ogs(options)
   .then((data) => {
     const { error, result, response } = data;

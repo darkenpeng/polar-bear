@@ -1,13 +1,23 @@
-// const { Client, Intents } = require('discord.js');
-const fs = require('fs');
-const { Client, Collection, Intents } = require('discord.js');
-const { token, channelID } = require('./config.json');
+
+import { readFileSync } from 'fs';
+import { Client, Collection, Intents } from 'discord.js';
+import help from "./commands/help.js";
+import notion from "./commands/notion.js";
+import ping from "./commands/ping.js";
+
+// import config from './config.json';
+
+const configJson = readFileSync("./config.json");
+const config = JSON.parse(configJson);
+
+const { token, channelID } = config;
+
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 client.commands = new Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
+// 명령어 추가할때마다 list에 넣어주어야 함
+const commandList = [help, notion, ping];
+console.log(commandList);
+for (const command of commandList) {
 	client.commands.set(command.data.name, command);
 }
 

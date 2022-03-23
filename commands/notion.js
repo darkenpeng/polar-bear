@@ -1,7 +1,9 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+import { SlashCommandBuilder } from '@discordjs/builders';
+import { MessageEmbed } from 'discord.js';
+import notion from "../notion/api.js";
 
-const notion = require("../notion/api.js");
+import {ogScraper} from '../og.js';
+
 //터미널에서 og로 받아오는 파일을 따로 빼서 얘만 node 파일명.js
 const data = new SlashCommandBuilder()
     .setName('notion')
@@ -15,8 +17,7 @@ const data = new SlashCommandBuilder()
             .setRequired(true))
 
 
-module.exports = {
-
+export default {
     data,
     async execute(interaction) {
         //replying to slash commands
@@ -29,16 +30,29 @@ module.exports = {
 
         const answer = await notion.getDBSchema();
 
+        const result = await ogScraper(url);
 
-        const embed = new MessageEmbed()
-            .setColor('#EFFF00')
-            .setTitle(answer.title[0].plain_text)
-            .setURL(answer.url)
-            .addFields(
-                { name: 'Definition', value: answer.created_time },
-            );
-        await interaction.editReply({ embeds: [embed] });
+        if(result.success){
+            console.log(result)
+            const embed = new MessageEmbed()
+                .setColor('#EFFF00')
+                .setTitle(answer.title[0].plain_text)
+                .setURL(answer.url)
+                .addFields(
+                    { name: 'Definition', value: answer.created_time },
+                );
+            await interaction.editReply({ embeds: [embed] });
+        } else {
+            // 실패 처리
+            console.error(result)
+            
+            const embed = new MessageEmbed()
+                .setColor('#FF0000')
+                .setTitle(error)
+            await interaction.editReply({ embeds: [embed] });
+        }
+        
+        return url
     },
 
-  
 };

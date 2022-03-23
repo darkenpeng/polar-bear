@@ -1,9 +1,9 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+import { SlashCommandBuilder } from '@discordjs/builders';
 // const discord = require('discord.js');
 // const message = discord.Message;
 // const url = message.URL;
 
-module.exports = {
+export default {
 	data: new SlashCommandBuilder()
     // .setName(name,[reason])
     
