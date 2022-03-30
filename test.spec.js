@@ -6,21 +6,25 @@ function isEven(n){
   return n % 2 === 0;
 }
 
-describe("tagging", ()=> {
-  [
-    [0, true],
-    [3, false],
-    [4, true],
-    [123456789, false],
-    [-276, true],
-    [-1, false],
-    [null, null]
-  ].forEach(([input, expected]) => {
-    it(`if input is ${input} then isEven return ${expected}`, ()=>{
-      expect(isEven(input)).toBe(expected);
-    })
-  })
-})
+  // input 위에 있는 거
+  // output { tag, type, source, name, link, description }
+
+const getSourceRules = [
+  { "method": "includes", "value": "youtube", "result": "유튜브" },
+  { "method": "includes", "value": "youtu.be", "result": "유튜브" },
+  { "method": "includes", "value": "inflearn", "result": "인프런" },
+  { "method": "includes", "value": "tistory", "result": "티스토리" },
+  { "method": "includes", "value": "udemy", "result": "유데미" },
+  { "method": "includes", "value": "velog", "result": "벨로그" },
+  { "method": "includes", "value": "twitter", "result": "트위터" },
+  { "method": "includes", "value": "techblog", "result": "테크-블로그" },
+  { "method": "includes", "value": "fe-developers.kakaoent", "result": "테크-블로그" },
+  { "method": "includes", "value": "github", "result": "깃허브" },
+]
+
+const getSource = (input) => {
+  return getSourceRules.find(rule => input.ogUrl[rule.method](rule.value))?.result || ""
+}
 
   //
   // db에 뭐가 들어 있다, 파일에 뭐가 쓰여 있다, 돔에 뭐가 그려져 있다
@@ -29,7 +33,7 @@ describe("tagging", ()=> {
   // assertion, then
   // 어떤 출력을 반환해야 하지?
   // 이게 끝나면 어떤 상태가 되야하지? 후행조건 
-
+// return getSourceRules.find(rule => input.ogUrl[rule.method](rule.value))?.result || "";
   // og 로 긁어온 결과... 입력으로 받아서 input
 describe ("ogScraper", ()=> {
 
@@ -97,22 +101,7 @@ describe ("ogScraper", ()=> {
     console.log(result);
     expect(result).toStrictEqual(inflearnOgResult);
   })
-  // input 위에 있는 거
-  // output { tag, type, source, name, link, description }
 
-  const getSource = (input) => {
-    if(input.ogUrl.includes("youtube")){
-      return "유튜브";
-    }
-    if(input.ogUrl.includes("inflearn")){
-      return "인프런";
-    }
-    if(input.ogUrl.includes('udemy')){
-      return "유데미";
-    }
-
-    return "";
-  }
   const getType = (input) => {
     if(input.ogUrl.includes("inflearn")){
       return "강좌";
@@ -160,6 +149,26 @@ describe ("ogScraper", ()=> {
 })
 
 
+describe.only("getSource", ()=> {
+  [
+    ["https://youtu.be/Fg00LN30Ezg", "유튜브"],
+    ["https://www.youtube.com/watch?v=2to3IQFhZVo", "유튜브"],
+    ["https://twitter.com/kms_bernard/status/1501189203685609476?s=20&t=JLMv72TBRQnb-KOUMxApBg", "트위터"],
+    ["https://github.com/baeharam/Must-Know-About-Frontend", "깃허브"],
+    ["https://www.inflearn.com/course", "인프런"],
+    ["https://velog.io/@joosing/", "벨로그"],
+    ["https://jojoldu.tistory.com/137", "티스토리"],
+    ["https://techblog.woowahan.com/2527/", "테크-블로그"],
+    ["https://fe-developers.kakaoent.com/2021/211022-react-children-tip/", "테크-블로그"],
+    ["https://www.w3schools.com/colors/colors_picker.asp", ""],
+    ["https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html", ""],
+    ["https://www.dafont.com/", ""]
+  ].forEach(([ogUrl, expected]) => {
+    it(`if input is ${ogUrl} then getSource return ${expected}`, ()=>{
+      expect(getSource({ ogUrl })).toBe(expected);
+    })
+  })
+})
 
   // 노션에 넣을... 각 컬럼별 태깅을 어떻게 했는지? 그 결과를 반환
   // ???
@@ -169,4 +178,8 @@ describe ("ogScraper", ()=> {
   // 노션에 request로 보내는 양식으로 출력하기를 기대하는
 
 
-
+//태깅로직 psudo
+// ogUrl: 'https://www.youtube.com/watch?v=G1rOthIU-uo'
+// ogUrl을 배열로 쪼갠다 split('.')
+// 1번 인덱스의 값을 tagging의 value로 지정해준다
+// 접근잘못했나?

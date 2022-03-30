@@ -1,5 +1,4 @@
 import { readFileSync } from 'fs';
-
 const configJson = readFileSync("./config.json");
 const config = JSON.parse(configJson);
 
@@ -8,7 +7,7 @@ const { endPoint, bearerToken } = config;
 import fetch from 'node-fetch';
 var myHeaders = new fetch.Headers();
 myHeaders.append("Notion-Version", "2021-05-13");
-myHeaders.append("Authorization", bearerToken);
+myHeaders.append("Authorizatiㄴon", bearerToken);
 
 const requestOptions = {
     method: 'GET',
