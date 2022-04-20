@@ -19,6 +19,10 @@ export const ogScraper = (url) => {
       }).catch(console.error)//에러를 받는 함수
 }
 
+
+
+
+
 // console.log("잘 긁어옴!" + url)
 
 // notion에서 가져온 url로 값 받아오기

@@ -1,10 +1,14 @@
+//controller, adapter
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { MessageEmbed } from 'discord.js';
 import notion from "../notion/api.js";
 
 import {ogScraper} from '../og.js';
 
-//터미널에서 og로 받아오는 파일을 따로 빼서 얘만 node 파일명.js
+// 터미널에서 og로 받아오는 파일을 따로 빼서 얘만 node 파일명.js
+// Type을 달아야?? @토끼님????
+// 아니 근데 해보고 싶음 ㅠㅠ하지만 너무바쁨 ㅠㅠ
+
 const data = new SlashCommandBuilder()
     .setName('notion')
     .setDescription( "노션 데이터베이스에 자료를 추가")
@@ -27,7 +31,7 @@ export default {
         
         // 토큰이 무효화되기 전에 3초 동안 상호 작용에 응답할 수 있습니다.
         await interaction.deferReply();
-
+//useCase
         const answer = await notion.getDBSchema();
 
         const result = await ogScraper(url);
@@ -54,5 +58,4 @@ export default {
         
         return url
     },
-
 };
