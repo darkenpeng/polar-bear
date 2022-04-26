@@ -1,4 +1,3 @@
-
 import { readFileSync } from 'fs';
 import { Client, Collection, Intents } from 'discord.js';
 import help from "./commands/help.js";
@@ -16,7 +15,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 client.commands = new Collection();
 // 명령어 추가할때마다 list에 넣어주어야 함
 const commandList = [help, notion, ping];
-console.log(commandList);
+//console.log(commandList);
 for (const command of commandList) {
 	client.commands.set(command.data.name, command);
 }

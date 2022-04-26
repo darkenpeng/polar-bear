@@ -5,7 +5,7 @@ function isEven(n){
   if(n===null) return null;
   return n % 2 === 0;
 }
-
+//TODO 빈문자열이 들어오면 '기타'태그로 
 it('2 => even', ()=>{
   expect(isEven(2)).toBe(true);
 })
@@ -28,6 +28,7 @@ it('2 => even', ()=>{
 // tagging logic => 순수 함수 input => output, 의존성이 없다! 부수효과도 없다!
 
 // persistence => 노션... / file / db / ...
+
 
 const getSourceRules = [
   { "method": "includes", "value": "youtube", "result": "유튜브" },
