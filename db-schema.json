@@ -1,0 +1,105 @@
+{
+  "object": "database",
+  "id": "b5e56b14-2cae-4e33-9e9a-af74c2d7e6a8",
+  "cover": null,
+  "icon": null,
+  "created_time": "2022-02-17T11:38:00.000Z",
+  "created_by": {
+    "object": "user",
+    "id": "13bb8b0d-51f9-49ee-b1fc-9549cf44d4dc"
+  },
+  "last_edited_by": {
+    "object": "user",
+    "id": "0a3665d7-fdde-44a6-beb0-efa5cb5c9a5d"
+  },
+  "last_edited_time": "2022-02-18T08:23:00.000Z",
+  "title": [
+    {
+      "type": "text",
+      "text": { "content": "db이게진짜임", "link": null },
+      "annotations": {
+        "bold": false,
+        "italic": false,
+        "strikethrough": false,
+        "underline": false,
+        "code": false,
+        "color": "default"
+      },
+      "plain_text": "db이게진짜임",
+      "href": null
+    }
+  ],
+  "properties": {
+    "태그": {
+      "id": ":`{y",
+      "name": "태그",
+      "type": "multi_select",
+      "multi_select": {
+        "options": [
+          {
+            "id": "2debe032-92cc-4b10-870f-4ae3cec109b8",
+            "name": "JS",
+            "color": "yellow"
+          },
+          {
+            "id": "10834a9a-ffb8-4785-a409-51d9e79f5d68",
+            "name": "React",
+            "color": "blue"
+          },
+          {
+            "id": "cc1edbf0-76b0-4a51-baae-08844354ea21",
+            "name": "HTML/CSS",
+            "color": "pink"
+          }
+        ]
+      }
+    },
+    "출처": {
+      "id": "SWpD",
+      "name": "출처",
+      "type": "select",
+      "select": {
+        "options": [
+          {
+            "id": "5af2146e-fc4a-4284-ad34-50c81e744a59",
+            "name": "유튜브",
+            "color": "red"
+          },
+          {
+            "id": "23f20175-f1d6-4f71-8c72-425c298074d0",
+            "name": "유데미",
+            "color": "purple"
+          }
+        ]
+      }
+    },
+    "링크": { "id": "Z]sd", "name": "링크", "type": "url", "url": {} },
+    "종류": {
+      "id": "clYp",
+      "name": "종류",
+      "type": "select",
+      "select": {
+        "options": [
+          {
+            "id": "ed9c8cce-9ced-4d8f-8c7e-d83b1b76ba43",
+            "name": "강좌",
+            "color": "default"
+          }
+        ]
+      }
+    },
+    "설명": {
+      "id": "{]pa",
+      "name": "설명",
+      "type": "rich_text",
+      "rich_text": {}
+    },
+    "이름": { "id": "title", "name": "이름", "type": "title", "title": {} }
+  },
+  "parent": {
+    "type": "page_id",
+    "page_id": "2c662722-8437-41db-9e54-280d1841ac0b"
+  },
+  "url": "https://www.notion.so/b5e56b142cae4e339e9aaf74c2d7e6a8",
+  "archived": false
+}

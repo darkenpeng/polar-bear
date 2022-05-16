@@ -1,14 +1,15 @@
 import { describe, it, expect } from "vitest";
 import { ogScraper } from "./og.js";
 
-function isEven(n){
-  if(n===null) return null;
-  return n % 2 === 0;
-}
-//TODO 빈문자열이 들어오면 '기타'태그로 
-it('2 => even', ()=>{
-  expect(isEven(2)).toBe(true);
-})
+// function isEven(n){
+//   if(n===null) return null;
+//   return n % 2 === 0;
+// }
+// //TODO 빈문자열이 들어오면 '기타'태그로 
+// it('2 => even', ()=>{
+//   expect(isEven(2)).toBe(true);
+// })
+
 // input 위에 있는 거
 // output { tag, type, source, name, link, description }
 
@@ -43,9 +44,7 @@ const getSourceRules = [
   { "method": "includes", "value": "github", "result": "깃허브" }
 ]
 
-const getSource = (input) => {
-  return getSourceRules.find(rule => input.ogUrl[rule.method](rule.value))?.result || ""
-}
+
 
 
 // db에 뭐가 들어 있다, 파일에 뭐가 쓰여 있다, 돔에 뭐가 그려져 있다
@@ -70,20 +69,7 @@ const getTypeRules = [
   { "method": "includes", "value": "github", "result": "깃허브" }
 ];
 
-const getType = (input) => {
-  return getTypeRules.find(rule=> input.ogUrl[rule.method](rule.value))?.result ?? "";
-}
 
-const tagging = (input) => {
-  return {
-    tag : ["Redis"],
-    type : getType(input),
-    source : getSource(input),  
-    title : input.ogTitle,
-    link : input.ogUrl,
-    description : input.ogDescription
-  };
-}
 
 describe ("ogScraper", ()=> {
 
