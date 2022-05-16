@@ -1,26 +1,26 @@
-import { getSourceRules, getTypeRules } from "./og.spec";
+import { mockSource, mockType } from "./og.tagging-mock-data.js";
 
 class Tagger {
-  constructor(getSourceRules, getTypeRules) {
-    this.getSourceRules = getSourceRules;
-    this.getTypeRules = getTypeRules;
+  constructor(mockSource, mockType) {
+    this.mockSource = mockSource;
+    this.mockType = mockType;
   }
 
   getSource(input) {
     return (
-      this.getSourceRules.find((rule) => input.ogUrl[rule.method](rule.value))
+      this.mockSource.find((rule) => input.ogUrl[rule.method](rule.value))
         ?.result || ""
     );
   }
 
   getType(input) {
     return (
-      this.getTypeRules.find((rule) => input.ogUrl[rule.method](rule.value))
+      this.mockType.find((rule) => input.ogUrl[rule.method](rule.value))
         ?.result ?? ""
     );
   }
 
-  tagging(input) {
+  getKeyword(input) {
     return {
       tag: ["Redis"],
       type: getType(input),
@@ -32,5 +32,5 @@ class Tagger {
   }
 }
 
-const tagger = new Tagger(getSourceRules, getTypeRules);
+const tagger = new Tagger(mockSource, mockType);
 export default tagger;
