@@ -1,30 +1,38 @@
-import { mockSource, mockType } from "./og.tagging-mock-data.js";
+import { sourceRules, typeRules, tagRules } from "./og-rules.js";
 
 class Tagger {
-  constructor(mockSource, mockType) {
-    this.mockSource = mockSource;
-    this.mockType = mockType;
+  constructor(sourceRules, typeRules, tagRules) {
+    this.sourceRules = sourceRules;
+    this.typeRules = typeRules;
+    this.tagRules = tagRules;
+
   }
 
   getSource(input) {
     return (
-      this.mockSource.find((rule) => input.ogUrl[rule.method](rule.value))
+      this.sourceRules.find((rule) => input.ogUrl[rule.method](rule.value))
         ?.result || ""
     );
   }
 
   getType(input) {
     return (
-      this.mockType.find((rule) => input.ogUrl[rule.method](rule.value))
+      this.typeRules.find((rule) => input.ogUrl[rule.method](rule.value))
         ?.result ?? ""
     );
   }
 
+  getTag(input) {
+    return this.tagRules.filter((rule)=> input.ogDescription[rule.method](rule.value))
+      .map((rule)=> rule.result);
+  }
+
   getKeyword(input) {
     return {
-      tag: ["Redis"],
-      type: getType(input),
-      source: getSource(input),
+      tag: this.getTag(input),
+      //여기 this 왜 쓰는지 모르겠는데 왠지 이거 써야 에러가 없어질 것 같음...
+      type: this.getType(input),
+      source: this.getSource(input),
       title: input.ogTitle,
       link: input.ogUrl,
       description: input.ogDescription,
@@ -32,5 +40,6 @@ class Tagger {
   }
 }
 
-const tagger = new Tagger(mockSource, mockType);
+const tagger = new Tagger(sourceRules, typeRules, tagRules);
 export default tagger;
+

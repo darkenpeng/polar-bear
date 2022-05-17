@@ -1,5 +1,5 @@
-const fireshipUrl = "https://www.youtube.com/watch?v=G1rOthIU-uo";
-const fireshipOgResult = {
+export const fireshipUrl = "https://www.youtube.com/watch?v=G1rOthIU-uo";
+export const fireshipOgResult = {
   ogSiteName: "YouTube",
   ogUrl: "https://www.youtube.com/watch?v=G1rOthIU-uo",
   ogTitle: "Redis in 100 Seconds",
@@ -20,8 +20,8 @@ const fireshipOgResult = {
   requestUrl: "https://www.youtube.com/watch?v=G1rOthIU-uo",
   success: true,
 };
-const inflearnUrl = "https://www.inflearn.com/course/스프링-입문-스프링부트";
-const inflearnOgResult = {
+export const inflearnUrl = "https://www.inflearn.com/course/스프링-입문-스프링부트";
+export const inflearnOgResult = {
   ogUrl:
     "https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8",
   ogType: "website",
@@ -57,5 +57,3 @@ const inflearnOgResult = {
   requestUrl: "https://www.inflearn.com/course/스프링-입문-스프링부트",
   success: true,
 };
-
-export { fireshipUrl, fireshipOgResult, inflearnUrl, inflearnOgResult }

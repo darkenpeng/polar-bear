@@ -5,7 +5,11 @@ import {
   taggingOutputInflearn,
   taggingOutputYoutube,
 } from "./og-tagging-mock-data.js";
-import { tagger } from "./og-tagging.js";
+import {
+  fireshipOgResult,
+  inflearnOgResult
+} from "./og-mock-data.js";
+import tagger from "./og-tagging.js";
 
 describe("getSource", () => {
   mockSource.forEach(([ogUrl, expected]) => {
@@ -25,12 +29,13 @@ describe("getType", () => {
 
 describe("getKeyword", () => {
   it("input og result then return expected tagging result", () => {
-    expect(tagger.tagging(fireshipOgResult)).toStrictEqual(
+
+    expect(tagger.getKeyword(fireshipOgResult)).toStrictEqual(
       taggingOutputYoutube
     );
   });
   it("input inflearnOgResult then return expected tagging result", () => {
-    expect(tagger.tagging(inflearnOgResult)).toStrictEqual(
+    expect(tagger.getKeyword(inflearnOgResult)).toStrictEqual(
       taggingOutputInflearn
     );
   });

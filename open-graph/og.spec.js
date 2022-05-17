@@ -8,11 +8,11 @@ import {fireshipUrl, fireshipOgResult, inflearnUrl, inflearnOgResult} from './og
 describe("ogScraper", () => {
   it("if request to inflearn, then return inflearn og result", async () => {
     const result = await ogScraper(inflearnUrl);
-    expect(result).toStrictEqual(inflearnOgResult);
+    expect(result).toMatchSnapshot();
   });
 
   it("if request to youtube, then return youtue og result", async () => {
     const result = await ogScraper(fireshipUrl);
-    expect(result).toStrictEqual(fireshipOgResult);
+    expect(result).toMatchSnapshot();
   });
 });
