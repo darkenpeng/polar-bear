@@ -4,7 +4,7 @@ class Tagger {
   constructor(sourceRules, typeRules, tagRules) {
     this.sourceRules = sourceRules;
     this.typeRules = typeRules;
-    this.tagRules = tagRules;
+    this.tagRules = tagRules
 
   }
 
@@ -23,13 +23,13 @@ class Tagger {
   }
 
   getTag(input) {
-    return this.tagRules.filter((rule)=> input.ogDescription[rule.method](rule.value))
+    return this.tagRules.filter((rule)=> input.ogDescription.toLowerCase()[rule.method](rule.value))
       .map((rule)=> rule.result);
   }
 
-  getKeyword(input) {
+  fromOgToRowData(input) {
     return {
-      tag: this.getTag(input),
+      tags: this.getTag(input),
       //여기 this 왜 쓰는지 모르겠는데 왠지 이거 써야 에러가 없어질 것 같음...
       type: this.getType(input),
       source: this.getSource(input),

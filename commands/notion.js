@@ -3,10 +3,8 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { MessageEmbed } from "discord.js";
 import notion from "../notion/api.js";
 import { ogScraper } from "../open-graph/og.js";
+import tagger from "../open-graph/og-tagging.js"
 
-// 터미널에서 og로 받아오는 파일을 따로 빼서 얘만 node 파일명.js
-// Type을 달아야?? @토끼님????
-// 아니 근데 해보고 싶음 ㅠㅠ하지만 너무바쁨 ㅠㅠ
 
 const data = new SlashCommandBuilder()
   .setName("notion")
@@ -28,19 +26,25 @@ export default {
     //useCase
     const answer = await notion.getDBSchema();
 
-    const result = await ogScraper(url);
+    const ogResult = await ogScraper(url);
+    // result를 tagging함. 즉 rowData로 변환 getKeyword 가 toRowData 임
+    const rowData = tagger.fromOgToRowData(ogResult)
+    const createResult = await notion.createPage(rowData)
 
-    if (result.success) {
-      console.log(result);
+    if (createResult.status) {
+
+      const body = await createResult.json()
+
       const embed = new MessageEmbed()
         .setColor("#EFFF00")
-        .setTitle(answer.title[0].plain_text)
-        .setURL(answer.url)
-        .addFields({ name: "Definition", value: answer.created_time });
+        .setTitle(rowData.title)
+        .setURL(body.url)
+        .addFields({ name: "Definition", value: rowData.description });
+
       await interaction.editReply({ embeds: [embed] });
     } else {
       // 실패 처리
-      console.error(result);
+      console.error(createResult);
 
       const embed = new MessageEmbed().setColor("#FF0000").setTitle(error);
       await interaction.editReply({ embeds: [embed] });

@@ -2,13 +2,14 @@ import { readFileSync } from 'fs';
 import { Client, Collection, Intents } from 'discord.js';
 import help from "./commands/help.js";
 import notion from "./commands/notion.js";
-import ping from "./commands/ping.js";
-
+import ping from './commands/ping.js'
 // import config from './config.json';
+//
 
-const configJson = readFileSync("./config.json");
+//const configJson = readFileSync("./config/initial-config.json");
+
+const configJson = readFileSync('./config/initial-config.json');
 const config = JSON.parse(configJson);
-
 const { token, channelID } = config;
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -22,9 +23,12 @@ client.on('ready', () => {
 	console.log('Ready!');
 
 });
+//textChannel.id = 959611383786393680
 
 client.on('interactionCreate', async interaction => {
 	const cachedChannel = client.channels.cache.get(channelID);
+	//console.log(cachedChannel)
+	//console.log(channelID)
 
 	if (cachedChannel.id !== interaction.channelId) return;
 	if (!interaction.isCommand()) return;

@@ -1,12 +1,6 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-// const discord = require('discord.js');
-// const message = discord.Message;
-// const url = message.URL;
-
 export default {
-	data: new SlashCommandBuilder()
-    // .setName(name,[reason])
-    
+	data: new SlashCommandBuilder()    
 		.setName('help')
 		.setDescription('/help!'),
 	async execute(interaction) {

@@ -27,15 +27,15 @@ describe("getType", () => {
   });
 });
 
-describe("getKeyword", () => {
+describe("fromOgToRowData", () => {
   it("input og result then return expected tagging result", () => {
 
-    expect(tagger.getKeyword(fireshipOgResult)).toStrictEqual(
+    expect(tagger.fromOgToRowData(fireshipOgResult)).toStrictEqual(
       taggingOutputYoutube
     );
   });
   it("input inflearnOgResult then return expected tagging result", () => {
-    expect(tagger.getKeyword(inflearnOgResult)).toStrictEqual(
+    expect(tagger.fromOgToRowData(inflearnOgResult)).toStrictEqual(
       taggingOutputInflearn
     );
   });
