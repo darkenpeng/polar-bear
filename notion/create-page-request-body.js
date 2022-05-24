@@ -8,7 +8,7 @@ export default ({
   tags
 }) => ({
   parent: {
-    database_id: "eb8194b161cf4bfe8f9920d8a4f3b68a", // 데이터베이스 아이디
+    database_id: "f4a8842680884a2c8876d9fb30b28d7f", // 데이터베이스 아이디
   },
   properties: {
     이름: {

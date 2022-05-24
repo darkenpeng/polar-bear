@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import { access, readFile, writeFile } from "fs/promises";
 //import { constants } from 'fs';
 import createPageRequestBody from "./create-page-request-body.js";
-const configJson = readFileSync("./config.json");
+const configJson = readFileSync("./config/initial-config.json");
 const config = JSON.parse(configJson);
 const SCHEMA_PATH = "./";
 const FILE_NAME = "db-schema.json";
@@ -71,14 +71,3 @@ export default {
   getDBSchema,
   createPage,
 };
-
-await createPage({
-  title: "백엔드 하드 트레이닝 4월 26일",
-  description: "좋은 자료임",
-  type: "강의",
-  link: "https://youtu.be/1GmxQegwjw4",
-  source: "유튜브",
-  tags: ["백엔드"],
-})
-  .then((res) => res.text())
-  .then((body) => console.log(body));
