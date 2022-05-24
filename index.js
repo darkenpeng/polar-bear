@@ -8,7 +8,7 @@ import ping from './commands/ping.js'
 
 //const configJson = readFileSync("./config/initial-config.json");
 
-const configJson = readFileSync('./config/initial-config.json');
+const configJson = readFileSync('./config.json');
 const config = JSON.parse(configJson);
 const { token, channelID } = config;
 

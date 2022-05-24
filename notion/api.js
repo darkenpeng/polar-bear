@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import { access, readFile, writeFile } from "fs/promises";
 //import { constants } from 'fs';
 import createPageRequestBody from "./create-page-request-body.js";
-const configJson = readFileSync("./config/initial-config.json");
+const configJson = readFileSync("./config.json");
 const config = JSON.parse(configJson);
 const SCHEMA_PATH = "./";
 const FILE_NAME = "db-schema.json";
