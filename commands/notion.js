@@ -28,6 +28,7 @@ export default {
 
     let ogResult = await ogScraper(url);
     ogResult = { ...ogResult, ogUrl: url }
+
     // result를 tagging함. 즉 rowData로 변환 getKeyword 가 toRowData 임
     const rowData = tagger.fromOgToRowData(ogResult)
     const createResult = await notion.createPage(rowData)

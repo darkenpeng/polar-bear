@@ -9,6 +9,7 @@ import ping from './commands/ping.js'
 //const configJson = readFileSync("./config/initial-config.json");
 
 const configJson = readFileSync('./config.json');
+
 const config = JSON.parse(configJson);
 const { token, channelID } = config;
 
@@ -29,7 +30,6 @@ client.on('ready', () => {
   console.log('ready')
 });
 //textChannel.id = 959611383786393680
-
 
 client.on('interactionCreate', async interaction => {
 	console.log('interaction')
