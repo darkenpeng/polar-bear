@@ -8,24 +8,31 @@ import ping from './commands/ping.js'
 
 //const configJson = readFileSync("./config/initial-config.json");
 
-const configJson = readFileSync('./config/initial-config.json');
+const configJson = readFileSync('./config.json');
+
 const config = JSON.parse(configJson);
 const { token, channelID } = config;
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+
 client.commands = new Collection();
 const commandList = [help, notion, ping];
+
 for (const command of commandList) {
-	client.commands.set(command.data.name, command);
+  console.log(command.data.name);
+  client.commands.set(command.data.name, command);
 }
 
 client.on('ready', () => {
-	console.log('Ready!');
-
+  client.channels.fetch(channelID).then(channel => {
+    channel.guild.commands.set(commandList.map(obj => obj.data))
+  })
+  console.log('ready')
 });
 //textChannel.id = 959611383786393680
 
 client.on('interactionCreate', async interaction => {
+	console.log('interaction')
 	const cachedChannel = client.channels.cache.get(channelID);
 	//console.log(cachedChannel)
 	//console.log(channelID)
@@ -43,8 +50,5 @@ client.on('interactionCreate', async interaction => {
 	});
 
 });
-
 client.login(token);
-
-
 

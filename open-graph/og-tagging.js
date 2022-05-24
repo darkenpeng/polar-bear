@@ -11,14 +11,14 @@ class Tagger {
   getSource(input) {
     return (
       this.sourceRules.find((rule) => input.ogUrl[rule.method](rule.value))
-        ?.result || ""
+        ?.result || "null"
     );
   }
 
   getType(input) {
     return (
       this.typeRules.find((rule) => input.ogUrl[rule.method](rule.value))
-        ?.result ?? ""
+        ?.result ?? "null"
     );
   }
 
