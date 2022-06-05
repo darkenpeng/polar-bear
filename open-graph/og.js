@@ -16,5 +16,7 @@ export const ogScraper = (url) => {
         // console.log('result:', result); // This contains all of the Open Graph results
         return result;
         // console.log('response:', response); // This contains the HTML of page
-      }).catch(console.error)//에러를 받는 함수
+      }).catch( e => {
+        throw Error('open-graph-error : ' + e.message )
+      })//에러를 받는 함수
 }

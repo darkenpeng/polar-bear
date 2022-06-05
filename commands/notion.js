@@ -3,8 +3,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { MessageEmbed } from "discord.js";
 import notion from "../notion/api.js";
 import { ogScraper } from "../open-graph/og.js";
-import tagger from "../open-graph/og-tagging.js"
-
+import tagger from "../open-graph/og-tagging.js";
 
 const data = new SlashCommandBuilder()
   .setName("notion")
@@ -24,34 +23,40 @@ export default {
     // 토큰이 무효화되기 전에 3초 동안 상호 작용에 응답할 수 있습니다.
     await interaction.deferReply();
     //useCase
-    const answer = await notion.getDBSchema();
+    // const answer = await notion.getDBSchema();
+    try {
+      let ogResult = await ogScraper(url);
+      ogResult = { ...ogResult, ogUrl: url };
 
-    let ogResult = await ogScraper(url);
-    ogResult = { ...ogResult, ogUrl: url }
+      // result를 tagging함. 즉 rowData로 변환 getKeyword 가 toRowData 임
+      const rowData = tagger.fromOgToRowData(ogResult);
+      const createResult = await notion.createPage(rowData);
 
-    // result를 tagging함. 즉 rowData로 변환 getKeyword 가 toRowData 임
-    const rowData = tagger.fromOgToRowData(ogResult)
-    const createResult = await notion.createPage(rowData)
+      if (createResult.status) {
+        const body = await createResult.json();
+        const embed = new MessageEmbed()
+          .setColor("#EFFF00")
+          .setTitle(rowData.title)
+          .setURL(body.url)
+          .addFields({ name: "Definition", value: rowData.description });
 
-    if (createResult.status) {
-
-      const body = await createResult.json()
-
+        await interaction.editReply({ embeds: [embed] });
+      } else {
+        // 실패 처리
+        console.error(createResult);
+        throw Error('notion-error :' + await createResult.text())
+        //const error_message =
+      }
+      return url;
+    } catch (e) {
+      console.error(e);
+      const [title, description] = e.message.split(':') // 'notion-error : 뭐시기뭐시기'
+      
       const embed = new MessageEmbed()
-        .setColor("#EFFF00")
-        .setTitle(rowData.title)
-        .setURL(body.url)
-        .addFields({ name: "Definition", value: rowData.description });
-
-      await interaction.editReply({ embeds: [embed] });
-    } else {
-      // 실패 처리
-      console.error(createResult);
-
-      const embed = new MessageEmbed().setColor("#FF0000").setTitle(error);
+        .setColor("#FF0000")
+        .setTitle(title)
+        .addFields({ name: "Definition", value: description });
       await interaction.editReply({ embeds: [embed] });
     }
-
-    return url;
   },
 };

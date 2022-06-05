@@ -3,10 +3,6 @@ import { Client, Collection, Intents } from 'discord.js';
 import help from "./commands/help.js";
 import notion from "./commands/notion.js";
 import ping from './commands/ping.js'
-// import config from './config.json';
-//
-
-//const configJson = readFileSync("./config/initial-config.json");
 
 const configJson = readFileSync('./config.json');
 
