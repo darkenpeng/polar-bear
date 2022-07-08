@@ -32,7 +32,7 @@ export default {
       const rowData = tagger.fromOgToRowData(ogResult);
       const createResult = await notion.createPage(rowData);
 
-      if (createResult.status) {
+      if (createResult.status === 200) {
         const body = await createResult.json();
         const embed = new MessageEmbed()
           .setColor("#EFFF00")
