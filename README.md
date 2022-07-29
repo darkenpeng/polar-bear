@@ -52,6 +52,8 @@ $ npm start
 > - open-graph-scraper
 > - vitest
 
-## 내용
+## 
 
-## 소개
+## 
+노션 페이지(https://acute-spectrum-201.notion.site/6d0112d07af248bea4356f5597f4c161)
+
