@@ -14,7 +14,6 @@ open-graph-scraper로 구현한 디스코드 봇
 |-- notion
 |   |-- api.js
 |   |-- create-page-request-body.js
-|   `-- notion.api.request.sample.shell.js
 |-- open-graph
 |   |-- __snapshots__
 |   |   `-- og.spec.js.snap
