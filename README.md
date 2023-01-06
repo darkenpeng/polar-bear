@@ -1,4 +1,4 @@
-# discord-bot
+# polar-bear
 open-graph-scraper로 구현한 디스코드 봇
 ## polar-bear 폴더구조
 ```
@@ -53,7 +53,4 @@ $ npm start
 > - vitest
 
 ## 
-
-## 
-노션 페이지(https://acute-spectrum-201.notion.site/6d0112d07af248bea4356f5597f4c161)
 
