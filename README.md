@@ -53,5 +53,7 @@ $ npm start
 > - open-graph-scraper
 > - vitest
 
-## 
+## 참고자료
+[삽질-과정을-남긴-블로그](https://log-of-antarctic-penguin.tistory.com/category/discord-bot.project.log?page=3)
 
+[회고록](https://log-of-antarctic-penguin.tistory.com/106)
