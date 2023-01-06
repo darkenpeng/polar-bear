@@ -44,6 +44,7 @@ $ npm start
 
 ## polar-bear 기능설명
 디스코드 채팅으로 URL을 입력하면 태그가 자동으로 생성되어 notion database에 row 추가
+
 미리 cache해둔 DB 스키마를 통해 POST 요청하는 방식으로 구현
 
 ## 기술스택
