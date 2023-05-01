@@ -40,7 +40,7 @@ $ npm start
 
 
 ## 데이터 파이프라인
-<img width="784" alt="image" src="https://user-images.githubusercontent.com/91370858/181772371-4a212e08-f650-4079-ae03-a65f1eff0caf.png">
+<img width="1534" alt="image" src="https://user-images.githubusercontent.com/91370858/235482516-4b511ce8-25c7-4ed3-bdac-cd2b2cd33338.png">
 
 ## polar-bear 기능설명
 디스코드 채팅으로 URL을 입력하면 태그가 자동으로 생성되어 notion database에 row 추가
